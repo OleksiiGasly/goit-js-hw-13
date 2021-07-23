@@ -16,7 +16,7 @@ export default class Search {
     // Отправка поискового запроса
     async fetchItems(apiKey, quantity) {
         const BASE_URL = 'https://pixabay.com/api/';
-        const parameters = {
+        const params = {
             key: apiKey,
             q: this.searchQuery,
             image_type: 'photo',
@@ -25,7 +25,7 @@ export default class Search {
             page: this.page,
             per_page: quantity,           
         }
-        const response = await axios.get(BASE_URL,{parameters});
+        const response = await axios.get(BASE_URL,{params});
         return response.data;
     }
 

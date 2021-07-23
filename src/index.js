@@ -1,4 +1,4 @@
-// import './sass/main.scss';
+import './sass/main.scss';
 import galleryTemplate from './templates/gallery-card-template.hbs';
 import { Notify } from 'notiflix';
 import simpleLightBoxRefresh from './js/simplelightbox';
@@ -63,7 +63,7 @@ const onSearchBtnClick = e => {
                 return;
             }
 
-            refs.loadMoreBtn.classList.add('is-hidden');
+            refs.loadMoreBtn.classList.remove('is-hidden');
             simpleLightBoxRefresh();
         })
         .catch(error => console.log(error));
