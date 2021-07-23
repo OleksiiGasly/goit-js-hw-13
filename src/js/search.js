@@ -4,8 +4,8 @@ export default class Search {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
-        this.cardsTotal = 0;
-        this.cardsShown = 0;
+        this.shownCards = 0;
+        this.totalCards = 0;
     }
 
     // Фиксация ключа поиска
@@ -40,23 +40,23 @@ export default class Search {
     }
 
     // Максимальное количество фотографий
-    totalCards(value) {
-        this.cardsTotal = value;
+    maxCards(value) {
+        this.totalCards = value;
     }
 
     // Текущее количество найденных фотографий
     renderedCards(value) {
-        this.cardsShown += value;
+        this.shownCards += value;
     }
 
     // Сброс текущего количества найденных фотографий
     renderedCardsReset() {
-        this.cardsShown = 0;
+        this.shownCards = 0;
     }
 
     // Проверка найено ли максимальное количество
-    maxCards() {
-        return (this.cardsShown >= this.cardsTotal);
+    ifMaxCards() {
+        return (this.shownCards >= this.totalCards);
     }
 
     // Геттер и сеттер

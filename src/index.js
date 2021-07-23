@@ -32,7 +32,7 @@ const onSearchBtnClick = e => {
 
     const searchQuery = e.currentTarget.elements.searchQuery.value.trim();
     if (searchQuery === '') {
-        Notify.info('Sorry, there are no images matching your search query. Please try again.');
+        Notify.info('Sorry, there are no images when you type nothing. Please type your query and try again.');
         return;
     }
 
@@ -43,27 +43,27 @@ const onSearchBtnClick = e => {
         .then(data => {
             if (data.hits.length === 0) {
                 Notify.info('Sorry, there are no images matching your search query. Please try again.');
-                
-                if (!maxCards) {
-                    refs.loadMoreBtn.classList.remove('is-hidden');
-                }
-
-            return            
             }
 
+            if (data.hits.length > 0) {
+                Notify.success(`Hooray! We found ${data.totalHits} images.`);
+                refs.loadMoreBtn.classList.remove('is-hidden');
+            }
+                               
             search.incrementPage();
             search.renderedCards(data.hits.length);
             search.maxCards(data.totalHits);
-            Notify.success(`Hooray! We found ${data.totalHits} images.`);
             clearMarkup();
-            renderMarkup(data.hits);
-
-            if (search.maxCards()) {
+            
+            if (search.ifMaxCards()) {
                 Notify.info("We're sorry, but you've reached the end of search results.");
+                refs.loadMoreBtn.classList.add('is-hidden');
                 return;
             }
 
-            refs.loadMoreBtn.classList.remove('is-hidden');
+            
+            renderMarkup(data.hits);
+
             simpleLightBoxRefresh();
         })
         .catch(error => console.log(error));
@@ -77,13 +77,12 @@ const onLoadMoreBtnClick = () => {
         search.renderedCards(data.hits.length);
         renderMarkup(data.hits);
 
-        if (search.maxCards()) {
+        if (search.ifMaxCards()) {
             Notify.info("We're sorry, but you've reached the end of search results.");
             refs.loadMoreBtn.classList.add('is-hidden');
             return;
         }
 
-        refs.loadMoreBtn.classList.remove('is-hidden');
         simpleLightBoxRefresh();
     })
     .catch(error => console.log(error));

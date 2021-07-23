@@ -1,0 +1,53 @@
+a {
+    text-decoration: none;
+}
+
+.gallery {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-bottom: 20px;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    margin: 10px;
+    transition: transform;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.04);
+    }
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: calc(100% / 4 - 10px);
+    padding: 10px;
+    width: 100%;
+    background-color: white;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+.figures {
+    margin-top: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: orangered;
+}

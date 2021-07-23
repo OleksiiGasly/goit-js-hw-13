@@ -1,4 +1,5 @@
 import SimpleLightbox from "simplelightbox";
+import '../../node_modules/simplelightbox/src/simple-lightbox.scss';
 
 let gallery = new SimpleLightbox('.gallery a');
 

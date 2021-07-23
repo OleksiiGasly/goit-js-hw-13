@@ -1,7 +1,2 @@
-.load-more {
-    display: block;
-}
-
-.load-more.is-hidden {
-    display: none;
-  }
+@import './basic-markup';
+@import './gallery';
