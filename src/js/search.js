@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default class Search {
     constructor() {
@@ -8,50 +8,58 @@ export default class Search {
         this.cardsShown = 0;
     }
 
-    initializeSearchQuery(searchQuery) {
+    // Фиксация ключа поиска
+    newSearchQuery(searchQuery) {
         this.searchQuery = searchQuery;
     }
 
     // Отправка поискового запроса
-    async fetchItems(API_KEY, QUANTITY) {
+    async fetchItems(apiKey, quantity) {
         const BASE_URL = 'https://pixabay.com/api/';
         const parameters = {
-            key: API_KEY,
+            key: apiKey,
             q: this.searchQuery,
             image_type: 'photo',
             orientation: 'horizontal',
             safesearch: true,
-            per_page: QUANTITY,
             page: this.page,
+            per_page: quantity,           
         }
-        const response = await axios.get(BASE_URL, {parameters});
+        const response = await axios.get(BASE_URL,{parameters});
         return response.data;
     }
 
+    // Фиксация номера страницы для последовательных запросов
     incrementPage() {
         this.page += 1;
     }
 
+    // Сброс номера страницы
     resetPage() {
         this.page = 1;
     }
 
+    // Максимальное количество фотографий
     totalCards(value) {
         this.cardsTotal = value;
     }
 
+    // Текущее количество найденных фотографий
     renderedCards(value) {
         this.cardsShown += value;
     }
 
+    // Сброс текущего количества найденных фотографий
     renderedCardsReset() {
         this.cardsShown = 0;
     }
 
+    // Проверка найено ли максимальное количество
     maxCards() {
         return (this.cardsShown >= this.cardsTotal);
     }
 
+    // Геттер и сеттер
     get query() {
         return this.searchQuery;
     }
@@ -59,5 +67,4 @@ export default class Search {
     set query(newQuery) {
         this.searchQuery = newQuery;
     }
-}
-
+};
