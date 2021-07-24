@@ -43,6 +43,7 @@ const onSearchBtnClick = e => {
         .then(data => {
             if (data.hits.length === 0) {
                 Notify.info('Sorry, there are no images matching your search query. Please try again.');
+                return;
             }
 
             if (data.hits.length > 0) {
@@ -60,7 +61,6 @@ const onSearchBtnClick = e => {
                 refs.loadMoreBtn.classList.add('is-hidden');
                 return;
             }
-
             
             renderMarkup(data.hits);
 
